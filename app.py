@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from joblib import load
 import pandas as pd
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Загружаем модели и OneHotEncoder
 model_total = load('model_total.joblib')
