@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Предсказание результатов игры</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        select, button { margin: 10px; padding: 5px; }
+        pre { background-color: #f0f0f0; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Выберите команды</h2>
+    
+    <select id="homeTeam">
+        <option value="Los Angeles Clippers (cyber)">Los Angeles Clippers (cyber)</option>
+        <option value="Memphis Grizzlies (cyber)">Memphis Grizzlies (cyber)</option>
+        <!-- Добавьте другие команды по необходимости -->
+    </select>
+
+    <select id="awayTeam">
+        <option value="Memphis Grizzlies (cyber)">Memphis Grizzlies (cyber)</option>
+        <option value="Los Angeles Clippers (cyber)">Los Angeles Clippers (cyber)</option>
+        <!-- Добавьте другие команды по необходимости -->
+    </select>
+
+    <button onclick="sendData()">Получить предсказание</button>
+
+    <h3>Результаты предсказания:</h3>
+    <pre id="response"></pre>
+
+    <script>
+        function sendData() {
+            const homeTeam = document.getElementById('homeTeam').value;
+            const awayTeam = document.getElementById('awayTeam').value;
+
+            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+
+            fetch('http://0.0.0.0:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Форматируем и отображаем ответ
+                const formattedResponse = data.map(item => {
+                    const key = Object.keys(item)[0];
+                    return `${key}: ${item[key]}`;
+                }).join('\n');
+                document.getElementById('response').textContent = formattedResponse;
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                document.getElementById('response').textContent = 'Ошибка: ' + error;
+            });
+        }
+    </script>
+
+</body>
+</html>
