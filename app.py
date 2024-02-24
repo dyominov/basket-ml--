@@ -67,23 +67,29 @@ def predict():
 
 
 @app.route('/team_stats', methods=['POST'])
+from flask import jsonify
+
 def team_stats():
     try:
         data = request.json
         home_team = data['homeTeam']
         away_team = data['awayTeam']
 
-        print("Home Team:", home_team)
-        print("Away Team:", away_team)
-
         # Фильтрация датафрейма по домашним играм home_team против away_team
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+        
         # Расчет статистик
         total_home_games = len(filtered_df)
         avg_total_score = filtered_df['totalScores'].mean()  # Предполагается, что у вас есть колонка totalScore
-        avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
-        avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
-        home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
+        avg_home_score = filtered_df['homeScore'].mean()  # Предполагается, что у вас есть колонка homeScore
+        avg_away_score = filtered_df['awayScore'].mean()  # Предполагается, что у вас есть колонка awayScore
+        home_wins = len(filtered_df[filtered_df['homeScore'] > filtered_df['awayScore']])
+
+        # Расчет побед в каждой четверти
+        first_quarter_wins = len(filtered_df[filtered_df['firstQuarterHomeScore'] > filtered_df['firstQuarterAwayScore']])
+        second_quarter_wins = len(filtered_df[filtered_df['secondQuarterHomeScore'] > filtered_df['secondQuarterAwayScore']])
+        third_quarter_wins = len(filtered_df[filtered_df['thirdQuarterHomeScore'] > filtered_df['thirdQuarterAwayScore']])
+        fourth_quarter_wins = len(filtered_df[filtered_df['fourthQuarterHomeScore'] > filtered_df['fourthQuarterAwayScore']])
 
         # Формирование ответа
         stats = [
@@ -91,13 +97,18 @@ def team_stats():
             {'avg_total_score': avg_total_score},
             {'avg_home_score': avg_home_score},
             {'avg_away_score': avg_away_score},
-            {'home_wins': home_wins}
+            {'home_wins': home_wins},
+            {'first_quarter_wins': first_quarter_wins},
+            {'second_quarter_wins': second_quarter_wins},
+            {'third_quarter_wins': third_quarter_wins},
+            {'fourth_quarter_wins': fourth_quarter_wins}
         ]
         return jsonify(stats)
 
     except Exception as e:
-        print("Error occurred:", e)
-        return jsonify({'error': str(e)})
+        print(f"An error occurred: {e}")
+        return jsonify({'error': 'An error occurred processing your request.'})
+
 
 
 
