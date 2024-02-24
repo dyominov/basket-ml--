@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from joblib import load
 import pandas as pd
 from flask_cors import CORS
+import pymongo
+
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
@@ -20,6 +23,9 @@ model_fourthQuarterAwayScore = load('model_fourthQuarterAwayScore.joblib')
 model_fourthQuarterHomeScore = load('model_fourthQuarterHomeScore.joblib')
 one_hot_encoder = load('one_hot_encoder.joblib')
 
+file_path = 'basketball2.csv'
+df = pd.read_csv(file_path)
+
 
 @app.route('/')
 def index():
@@ -32,8 +38,7 @@ def predict():
     data = request.json
     away_team = data['awayTeam']
     home_team = data['homeTeam']
-    
-    
+
     # Подготовка данных для прогнозирования
     teams_for_prediction = pd.DataFrame({
         'awayTeam': [away_team],
@@ -59,6 +64,41 @@ def predict():
 
     # Возвращаем результаты
     return jsonify(predictions)
+
+
+@app.route('/team_stats', methods=['POST'])
+def team_stats():
+    try:
+        data = request.json
+        home_team = data['homeTeam']
+        away_team = data['awayTeam']
+
+        print("Home Team:", home_team)
+        print("Away Team:", away_team)
+
+        # Фильтрация датафрейма по домашним играм home_team против away_team
+        filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+        # Расчет статистик
+        total_home_games = len(filtered_df)
+        avg_total_score = filtered_df['totalScores'].mean()  # Предполагается, что у вас есть колонка totalScore
+        avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
+        avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
+        home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
+
+        # Формирование ответа
+        stats = [
+            {'total_home_games': total_home_games},
+            {'avg_total_score': avg_total_score},
+            {'avg_home_score': avg_home_score},
+            {'avg_away_score': avg_away_score},
+            {'home_wins': home_wins}
+        ]
+        return jsonify(stats)
+
+    except Exception as e:
+        print("Error occurred:", e)
+        return jsonify({'error': str(e)})
+
 
 
 if __name__ == "__main__":
