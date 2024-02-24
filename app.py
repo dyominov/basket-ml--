@@ -31,7 +31,6 @@ collection = db['basket2']  # Замените на имя вашей колле
 df = pd.DataFrame(list(collection.find()))
 
 
-
 @app.route('/')
 def index():
     # Отображение HTML-шаблона index.html из папки templates
@@ -43,8 +42,7 @@ def predict():
     data = request.json
     away_team = data['awayTeam']
     home_team = data['homeTeam']
-    
-    
+
     # Подготовка данных для прогнозирования
     teams_for_prediction = pd.DataFrame({
         'awayTeam': [away_team],
@@ -70,6 +68,7 @@ def predict():
 
     # Возвращаем результаты
     return jsonify(predictions)
+
 
 @app.route('/team_stats', methods=['POST'])
 def team_stats():
@@ -97,7 +96,6 @@ def team_stats():
     }
 
     return jsonify(stats)
-
 
 
 if __name__ == "__main__":
