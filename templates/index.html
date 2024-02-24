@@ -78,8 +78,6 @@
     })
     .then(response => response.json())
     .then(data => {
-    console.log(data); // Выводим полученные данные в консоль
-
     let formattedResponse = '';
     data.forEach(item => {
         const key = Object.keys(item)[0]; // Получаем ключ каждого объекта в массиве
