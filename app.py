@@ -72,30 +72,43 @@ def predict():
 
 @app.route('/team_stats', methods=['POST'])
 def team_stats():
-    data = request.json
-    home_team = data['homeTeam']
-    away_team = data['awayTeam']
+    try:
+        data = request.json
+        home_team = data['homeTeam']
+        away_team = data['awayTeam']
 
-    # Фильтрация датафрейма по домашним играм home_team против away_team
-    filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+        print("Home Team:", home_team)
+        print("Away Team:", away_team)
 
-    # Расчет статистик
-    total_home_games = len(filtered_df)
-    avg_total_score = filtered_df['totalScore'].mean()  # Предполагается, что у вас есть колонка totalScore
-    avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
-    avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
-    home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
+        # Фильтрация датафрейма по домашним играм home_team против away_team
+        filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
 
-    # Формирование ответа
-    stats = {
-        'total_home_games': total_home_games,
-        'avg_total_score': avg_total_score,
-        'avg_home_score': avg_home_score,
-        'avg_away_score': avg_away_score,
-        'home_wins': home_wins
-    }
+        print("Filtered DataFrame:", filtered_df)
 
-    return jsonify(stats)
+        # Расчет статистик
+        total_home_games = len(filtered_df)
+        avg_total_score = filtered_df['totalScore'].mean()  # Предполагается, что у вас есть колонка totalScore
+        avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
+        avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
+        home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
+
+        # Формирование ответа
+        stats = {
+            'total_home_games': total_home_games,
+            'avg_total_score': avg_total_score,
+            'avg_home_score': avg_home_score,
+            'avg_away_score': avg_away_score,
+            'home_wins': home_wins
+        }
+
+        print("Statistics:", stats)
+
+        return jsonify(stats)
+
+    except Exception as e:
+        print("Error occurred:", e)
+        return jsonify({'error': str(e)})
+
 
 
 if __name__ == "__main__":
