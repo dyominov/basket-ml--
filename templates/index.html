@@ -113,7 +113,7 @@
             .then(response => response.json())
             .then(data => {
                 let formattedResponse = '';
-                // Добавьте обработку данных статистики и формирование строки для вывода в pre
+                // Обработка данных статистики и формирование строки для вывода в pre
                 formattedResponse += JSON.stringify(data, null, 2);
                 document.getElementById('statsResponse').textContent = formattedResponse; 
             })
