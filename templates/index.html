@@ -57,42 +57,71 @@
         <option value="Sacramento Kings (cyber)">Sacramento Kings (cyber)</option>
     </select>
 
-    <button onclick="sendData()">Получить предсказание</button>
+    <button onclick="getPrediction()">Получить предсказание</button>
+    <button onclick="getTeamStats()">Получить статистику</button>
 
-    <h3>Результаты предсказания:</h3>
-    <pre id="response"></pre>
+    <h3>Прогноз результатов игры:</h3>
+    <pre id="predictionResponse"></pre>
+
+    <h3>Статистика по играм:</h3>
+    <pre id="statsResponse"></pre>
 
     <script>
-        function sendData() {
-    const homeTeam = document.getElementById('homeTeam').value;
-    const awayTeam = document.getElementById('awayTeam').value;
+        function getPrediction() {
+            const homeTeam = document.getElementById('homeTeam').value;
+            const awayTeam = document.getElementById('awayTeam').value;
 
-    const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
 
-    fetch('http://18.233.168.123:5000/predict', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-    let formattedResponse = '';
-    data.forEach(item => {
-        const key = Object.keys(item)[0]; // Получаем ключ каждого объекта в массиве
-        const value = item[key]; // Получаем значение для этого ключа
-        formattedResponse += `${key}: ${value}\n`; // Добавляем информацию в formattedResponse
-    });
+            fetch('http://18.233.168.123:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                let formattedResponse = '';
+                data.forEach(item => {
+                    const key = Object.keys(item)[0]; 
+                    const value = item[key]; 
+                    formattedResponse += `${key}: ${value}\n`; 
+                });
 
-    document.getElementById('response').textContent = formattedResponse; // Выводим formattedResponse в элемент с id="response"
-})
-    .catch((error) => {
-        console.error('Ошибка:', error);
-        document.getElementById('response').textContent = 'Ошибка: ' + error;
-    });
-}
+                document.getElementById('predictionResponse').textContent = formattedResponse; 
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                document.getElementById('predictionResponse').textContent = 'Ошибка: ' + error;
+            });
+        }
 
+        function getTeamStats() {
+            const homeTeam = document.getElementById('homeTeam').value;
+            const awayTeam = document.getElementById('awayTeam').value;
+
+            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+
+            fetch('http://18.233.168.123:5000/team_stats', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                let formattedResponse = '';
+                // Добавьте обработку данных статистики и формирование строки для вывода в pre
+                formattedResponse += JSON.stringify(data, null, 2);
+                document.getElementById('statsResponse').textContent = formattedResponse; 
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
+            });
+        }
     </script>
 
 </body>
