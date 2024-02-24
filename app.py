@@ -81,7 +81,7 @@ def team_stats():
         avg_total_score = filtered_df['totalScores'].mean()  # Предполагается, что у вас есть колонка totalScore
         avg_home_score = filtered_df['homeScore'].mean()  # Предполагается, что у вас есть колонка homeScore
         avg_away_score = filtered_df['awayScore'].mean()  # Предполагается, что у вас есть колонка awayScore
-        home_wins = len(filtered_df[filtered_df['homeScore'] > filtered_df['awayScore']])
+        home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
 
         # Расчет побед в каждой четверти
         first_quarter_wins = len(filtered_df[filtered_df['firstQuarterHomeScore'] > filtered_df['firstQuarterAwayScore']])
