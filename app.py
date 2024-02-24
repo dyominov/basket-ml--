@@ -23,12 +23,8 @@ model_fourthQuarterAwayScore = load('model_fourthQuarterAwayScore.joblib')
 model_fourthQuarterHomeScore = load('model_fourthQuarterHomeScore.joblib')
 one_hot_encoder = load('one_hot_encoder.joblib')
 
-uri = "mongodb+srv://dyominov:1212dema@cluster0.v37qbx3.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(uri)
-db = client['basket']  # Замените на имя вашей базы данных
-collection = db['basket2']  # Замените на имя вашей коллекции
-
-df = pd.DataFrame(list(collection.find()))
+file_path = 'basketball2.csv'
+df = pd.read_csv(file_path)
 
 
 @app.route('/')
