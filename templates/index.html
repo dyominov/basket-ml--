@@ -98,30 +98,35 @@
         }
 
         function getTeamStats() {
-            const homeTeam = document.getElementById('homeTeam').value;
-            const awayTeam = document.getElementById('awayTeam').value;
+    const homeTeam = document.getElementById('homeTeam').value;
+    const awayTeam = document.getElementById('awayTeam').value;
 
-            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+    const data = { homeTeam: homeTeam, awayTeam: awayTeam };
 
-            fetch('http://18.233.168.123:5000/team_stats', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                let formattedResponse = '';
-                // Обработка данных статистики и формирование строки для вывода в pre
-                formattedResponse += JSON.stringify(data, null, 2);
-                document.getElementById('statsResponse').textContent = formattedResponse; 
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
-            });
-        }
+    fetch('http://18.233.168.123:5000/team_stats', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        let formattedResponse = '';
+        data.forEach(item => {
+            const key = Object.keys(item)[0]; 
+            const value = item[key]; 
+            formattedResponse += `${key}: ${value}\n`; 
+        });
+
+        document.getElementById('statsResponse').textContent = formattedResponse; 
+    })
+    .catch((error) => {
+        console.error('Ошибка:', error);
+        document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
+    });
+}
+
     </script>
 
 </body>
