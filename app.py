@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from joblib import load
 import pandas as pd
 from flask_cors import CORS
+import pymongo
+
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +22,14 @@ model_thirdQuarterHomeScore = load('model_thirdQuarterHomeScore.joblib')
 model_fourthQuarterAwayScore = load('model_fourthQuarterAwayScore.joblib')
 model_fourthQuarterHomeScore = load('model_fourthQuarterHomeScore.joblib')
 one_hot_encoder = load('one_hot_encoder.joblib')
+
+uri = "mongodb+srv://dyominov:1212dema@cluster0.v37qbx3.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri)
+db = client['basket']  # Замените на имя вашей базы данных
+collection = db['basket2']  # Замените на имя вашей коллекции
+
+df = pd.DataFrame(list(collection.find()))
+
 
 
 @app.route('/')
@@ -59,6 +70,34 @@ def predict():
 
     # Возвращаем результаты
     return jsonify(predictions)
+
+@app.route('/team_stats', methods=['POST'])
+def team_stats():
+    data = request.json
+    home_team = data['homeTeam']
+    away_team = data['awayTeam']
+
+    # Фильтрация датафрейма по домашним играм home_team против away_team
+    filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+
+    # Расчет статистик
+    total_home_games = len(filtered_df)
+    avg_total_score = filtered_df['totalScore'].mean()  # Предполагается, что у вас есть колонка totalScore
+    avg_home_score = filtered_df['homeScore'].mean()  # Предполагается, что у вас есть колонка homeScore
+    avg_away_score = filtered_df['awayScore'].mean()  # Предполагается, что у вас есть колонка awayScore
+    home_wins = len(filtered_df[filtered_df['homeScore'] > filtered_df['awayScore']])
+
+    # Формирование ответа
+    stats = {
+        'total_home_games': total_home_games,
+        'avg_total_score': avg_total_score,
+        'avg_home_score': avg_home_score,
+        'avg_away_score': avg_away_score,
+        'home_wins': home_wins
+    }
+
+    return jsonify(stats)
+
 
 
 if __name__ == "__main__":
