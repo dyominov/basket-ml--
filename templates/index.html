@@ -64,31 +64,42 @@
 
     <script>
         function sendData() {
-            const homeTeam = document.getElementById('homeTeam').value;
-            const awayTeam = document.getElementById('awayTeam').value;
+    const homeTeam = document.getElementById('homeTeam').value;
+    const awayTeam = document.getElementById('awayTeam').value;
 
-            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+    const data = { homeTeam: homeTeam, awayTeam: awayTeam };
 
-            fetch('http://18.233.168.123:5000/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.error(data);
-            })
-            
-            
-            document.getElementById('response').textContent = formattedResponse;
-        })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                document.getElementById('response').textContent = 'Ошибка: ' + error;
-            });
-        }
+    fetch('http://18.233.168.123:5000/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Выводим полученные данные в консоль
+
+        let formattedResponse = `Total Score: ${data['Total Score']}\n`;
+        formattedResponse += `Home Score: ${data['Home Score']}\n`;
+        formattedResponse += `Away Score: ${data['Away Score']}\n`;
+        formattedResponse += `1st Quarter Home Score: ${data['1st Quarter Home Score']}\n`;
+        formattedResponse += `1st Quarter Away Score: ${data['1st Quarter Away Score']}\n`;
+        formattedResponse += `2nd Quarter Home Score: ${data['2nd Quarter Home Score']}\n`;
+        formattedResponse += `2nd Quarter Away Score: ${data['2nd Quarter Away Score']}\n`;
+        formattedResponse += `3rd Quarter Home Score: ${data['3rd Quarter Home Score']}\n`;
+        formattedResponse += `3rd Quarter Away Score: ${data['3rd Quarter Away Score']}\n`;
+        formattedResponse += `4th Quarter Home Score: ${data['4th Quarter Home Score']}\n`;
+        formattedResponse += `4th Quarter Away Score: ${data['4th Quarter Away Score']}`;
+
+        document.getElementById('response').textContent = formattedResponse;
+    })
+    .catch((error) => {
+        console.error('Ошибка:', error);
+        document.getElementById('response').textContent = 'Ошибка: ' + error;
+    });
+}
+
     </script>
 
 </body>
