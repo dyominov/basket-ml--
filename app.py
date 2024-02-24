@@ -82,9 +82,6 @@ def team_stats():
 
         # Фильтрация датафрейма по домашним играм home_team против away_team
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
-
-        print("Filtered DataFrame:", filtered_df)
-
         # Расчет статистик
         total_home_games = len(filtered_df)
         avg_total_score = filtered_df['totalScores'].mean()  # Предполагается, что у вас есть колонка totalScore
@@ -93,16 +90,13 @@ def team_stats():
         home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
 
         # Формирование ответа
-        stats = {
-            'total_home_games': total_home_games,
-            'avg_total_score': avg_total_score,
-            'avg_home_score': avg_home_score,
-            'avg_away_score': avg_away_score,
-            'home_wins': home_wins
-        }
-
-        print("Statistics:", stats)
-
+        stats = [
+            {'total_home_games': total_home_games},
+            {'avg_total_score': avg_total_score},
+            {'avg_home_score': avg_home_score},
+            {'avg_away_score': avg_away_score},
+            {'home_wins': home_wins}
+        ]
         return jsonify(stats)
 
     except Exception as e:
