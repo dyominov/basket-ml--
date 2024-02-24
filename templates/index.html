@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предсказание результатов игры</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        select, button { margin: 10px; padding: 10px; width: calc(100% - 20px); box-sizing: border-box; }
+        pre { background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 10px; }
+        h2, h3 { margin-left: 10px; }
+        @media (max-width: 600px) {
+            select, button { margin: 10px 5%; padding: 10px; width: calc(90% - 20px); }
+            pre, h2, h3 { margin: 10px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Выберите команды</h2>
+    
+    <select id="homeTeam">
+        <option value="Los Angeles Lakers (cyber)">Los Angeles Lakers (cyber)</option>
+        <option value="Boston Celtics (cyber)">Boston Celtics (cyber)</option>
+        <option value="Milwaukee Bucks (cyber)">Milwaukee Bucks (cyber)</option>
+        <option value="Golden State Warriors (cyber)">Golden State Warriors (cyber)</option>
+        <option value="Denver Nuggets (cyber)">Denver Nuggets (cyber)</option>
+        <option value="Cleveland Cavaliers (cyber)">Cleveland Cavaliers (cyber)</option>
+        <option value="Philadelphia 76ers (cyber)">Philadelphia 76ers (cyber)</option>
+        <option value="Atlanta Hawks (cyber)">Atlanta Hawks (cyber)</option>
+        <option value="Minnesota Timberwolves (cyber)">Minnesota Timberwolves (cyber)</option>
+        <option value="Memphis Grizzlies (cyber)">Memphis Grizzlies (cyber)</option>
+        <option value="Los Angeles Clippers (cyber)">Los Angeles Clippers (cyber)</option>
+        <option value="Miami Heat (cyber)">Miami Heat (cyber)</option>
+        <option value="New York Knicks (cyber)">New York Knicks (cyber)</option>
+        <option value="Phoenix Suns (cyber)">Phoenix Suns (cyber)</option>
+        <option value="Brooklyn Nets (cyber)">Brooklyn Nets (cyber)</option>
+        <option value="Sacramento Kings (cyber)">Sacramento Kings (cyber)</option>
+    </select>
+
+    <select id="awayTeam">
+        <option value="Los Angeles Lakers (cyber)">Los Angeles Lakers (cyber)</option>
+        <option value="Boston Celtics (cyber)">Boston Celtics (cyber)</option>
+        <option value="Milwaukee Bucks (cyber)">Milwaukee Bucks (cyber)</option>
+        <option value="Golden State Warriors (cyber)">Golden State Warriors (cyber)</option>
+        <option value="Denver Nuggets (cyber)">Denver Nuggets (cyber)</option>
+        <option value="Cleveland Cavaliers (cyber)">Cleveland Cavaliers (cyber)</option>
+        <option value="Philadelphia 76ers (cyber)">Philadelphia 76ers (cyber)</option>
+        <option value="Atlanta Hawks (cyber)">Atlanta Hawks (cyber)</option>
+        <option value="Minnesota Timberwolves (cyber)">Minnesota Timberwolves (cyber)</option>
+        <option value="Memphis Grizzlies (cyber)">Memphis Grizzlies (cyber)</option>
+        <option value="Los Angeles Clippers (cyber)">Los Angeles Clippers (cyber)</option>
+        <option value="Miami Heat (cyber)">Miami Heat (cyber)</option>
+        <option value="New York Knicks (cyber)">New York Knicks (cyber)</option>
+        <option value="Phoenix Suns (cyber)">Phoenix Suns (cyber)</option>
+        <option value="Brooklyn Nets (cyber)">Brooklyn Nets (cyber)</option>
+        <option value="Sacramento Kings (cyber)">Sacramento Kings (cyber)</option>
+    </select>
+
+    <button onclick="sendData()">Получить предсказание</button>
+
+    <h3>Результаты предсказания:</h3>
+    <pre id="response"></pre>
+
+    <script>
+        function sendData() {
+            const homeTeam = document.getElementById('homeTeam').value;
+            const awayTeam = document.getElementById('awayTeam').value;
+
+            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+
+            fetch('http://18.233.168.123:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const formattedResponse = data.map(item => {
+                    const key = Object.keys(item)[0];
+                    return `${key}: ${item[key]}`;
+                }).join('\n');
+                document.getElementById('response').textContent = formattedResponse;
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                document.getElementById('response').textContent = 'Ошибка: ' + error;
+            });
+        }
+    </script>
+
+</body>
+</html>

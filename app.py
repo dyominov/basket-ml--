@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from joblib import load
 import pandas as pd
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Загружаем модели и OneHotEncoder
 model_total = load('model_total.joblib')
@@ -17,6 +19,13 @@ model_thirdQuarterHomeScore = load('model_thirdQuarterHomeScore.joblib')
 model_fourthQuarterAwayScore = load('model_fourthQuarterAwayScore.joblib')
 model_fourthQuarterHomeScore = load('model_fourthQuarterHomeScore.joblib')
 one_hot_encoder = load('one_hot_encoder.joblib')
+
+
+@app.route('/')
+def index():
+    # Отображение HTML-шаблона index.html из папки templates
+    return render_template('index.html')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
