@@ -83,9 +83,9 @@ def team_stats():
     # Расчет статистик
     total_home_games = len(filtered_df)
     avg_total_score = filtered_df['totalScore'].mean()  # Предполагается, что у вас есть колонка totalScore
-    avg_home_score = filtered_df['homeScore'].mean()  # Предполагается, что у вас есть колонка homeScore
-    avg_away_score = filtered_df['awayScore'].mean()  # Предполагается, что у вас есть колонка awayScore
-    home_wins = len(filtered_df[filtered_df['homeScore'] > filtered_df['awayScore']])
+    avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
+    avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
+    home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
 
     # Формирование ответа
     stats = {
