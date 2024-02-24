@@ -33,8 +33,6 @@ def predict():
     away_team = data['awayTeam']
     home_team = data['homeTeam']
     
-    # Название матча
-    match_name = f"{home_team} vs {away_team}"
     
     # Подготовка данных для прогнозирования
     teams_for_prediction = pd.DataFrame({
@@ -46,7 +44,6 @@ def predict():
 
     # Делаем предсказания и формируем ответ
     predictions = [
-        {'Match': match_name},
         {'Total Score': model_total.predict(encoded_teams_df)[0]},
         {'Home Score': model_home.predict(encoded_teams_df)[0]},
         {'Away Score': model_away.predict(encoded_teams_df)[0]},
