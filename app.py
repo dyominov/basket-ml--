@@ -67,8 +67,6 @@ def predict():
 
 
 @app.route('/team_stats', methods=['POST'])
-from flask import jsonify
-
 def team_stats():
     try:
         data = request.json
