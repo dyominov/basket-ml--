@@ -112,25 +112,23 @@ def input_stats():
         home_team = data['homeTeam']
         away_team = data['awayTeam']
         operand = data['operand']
-        value = data['value']
+        value = float(data['value'])  # Преобразование строки в число
 
-        # Фильтрация датафрейма по домашним играм home_team против away_team
+        # Фильтрация датафрейма
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
         
-        # Расчет статистик
-        total_home_games = len(filtered_df)
-        expected = filtered_df[operand] > value 
+        # Расчет ожидаемого количества
+        expected_count = (filtered_df[operand] > value).sum()
         
         # Формирование ответа
         stats = [
-            {'Total games': total_home_games},
-            {'Expected count': expected},
+            {'Total games': len(filtered_df)},
+            {'Expected count': expected_count},
         ]
         return jsonify(stats)
-
     except Exception as e:
         print(f"An error occurred: {e}")
-        return jsonify({'error': 'An error occurred processing your request.'})
+        return jsonify({'error': str(e)})
 
 
 
