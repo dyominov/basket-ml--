@@ -117,16 +117,28 @@ def input_stats():
 
         # Фильтрация датафрейма
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
-        
+        filtered_df_all_home = df[(df['homeTeam'] == home_team)]
+        filtered_df_all_away = df[(df['awayTeam'] == away_team)]        
+
         # Расчет ожидаемого количества
-        total_home_games = len(filtered_df)
+        total_games = len(filtered_df)
+        total_games_home = len(filtered_df_all_home)
+        total_games_away = len(filtered_df_all_away)
+        
         expected_count = (filtered_df[operand] > value).sum()
+        expected_count_home_all = (filtered_df_all_home[operand] > value).sum()
+        expected_count_away_all = (filtered_df_all_away[operand] > value).sum()
         
         # Формирование ответа
         stats = [
-            {'Total games': int(total_home_games)},
+            {'Total games': int(total_games)},
+            {'Total games': int(total_games_home)},
+            {'Total games': int(total_games_away)},
+            
             {'Operand': operand},
             {'Expected count': int(expected_count)},
+            {'Expected count': int(expected_count_home_all)},
+            {'Expected count': int(expected_count_away_all)},  
         ]
         return jsonify(stats)
     except Exception as e:
