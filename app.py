@@ -119,12 +119,13 @@ def input_stats():
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
         
         # Расчет ожидаемого количества
+        total_home_games = len(filtered_df)
         expected_count = (filtered_df[operand] > value).sum()
         
         # Формирование ответа
         stats = [
-            {'Total games': len(filtered_df)},
-            {'Expected count': expected_count},
+            {'Total games': int(total_home_games)},
+            {'Expected count': int(expected_count)},
         ]
         return jsonify(stats)
     except Exception as e:
