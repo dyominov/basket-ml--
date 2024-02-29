@@ -131,14 +131,14 @@ def input_stats():
         
         # Формирование ответа
         stats = [
-            {'Total games': int(total_games)},
-            {'Total games': int(total_games_home)},
-            {'Total games': int(total_games_away)},
+            {'Total games current match': int(total_games)},
+            {'Total games for home': int(total_games_home)},
+            {'Total games for away': int(total_games_away)},
             
             {'Operand': operand},
-            {'Expected count': int(expected_count)},
-            {'Expected count': int(expected_count_home_all)},
-            {'Expected count': int(expected_count_away_all)},  
+            {'Expected count current match': int(expected_count)},
+            {'Expected count for home': int(expected_count_home_all)},
+            {'Expected count for away': int(expected_count_away_all)},  
         ]
         return jsonify(stats)
     except Exception as e:
