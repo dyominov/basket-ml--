@@ -70,43 +70,40 @@ def predict():
 def team_stats():
     try:
         data = request.json
-        print(data)
         home_team = data['homeTeam']
         away_team = data['awayTeam']
 
-        # Фильтрация датафрейма по домашним играм home_team против away_team
+        # Фильтрация датафрейма
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
-        print(filtered_df)
         
         # Расчет статистик
         total_home_games = len(filtered_df)
-        print(total_home_games)
         min_total_score = filtered_df['totalScores'].min()
-        max_total_score = filtered_df['totalScores'].max()  
-        min_home_score = filtered_df['home'].min() 
+        max_total_score = filtered_df['totalScores'].max()
+        min_home_score = filtered_df['home'].min()
         max_home_score = filtered_df['home'].max()
         min_away_score = filtered_df['away'].min()
         max_away_score = filtered_df['away'].max()
-        
-        home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
+        home_wins = (filtered_df['home'] > filtered_df['away']).sum()
 
-        # Формирование ответа
+        # Преобразование значений в int или float
         stats = [
-            {'Total games': total_home_games},
-            {'min_total_score': min_total_score},
-            {'max_total_score': max_total_score},
-            {'min_home_score': min_home_score},
-            {'max_home_score': max_home_score},
-            {'min_away_score': min_away_score},
-            {'max_away_score': max_away_score},
-            {'home_wins': home_wins}
+            {'Total games': int(total_home_games)},
+            {'min_total_score': float(min_total_score)},
+            {'max_total_score': float(max_total_score)},
+            {'min_home_score': float(min_home_score)},
+            {'max_home_score': float(max_home_score)},
+            {'min_away_score': float(min_away_score)},
+            {'max_away_score': float(max_away_score)},
+            {'home_wins': int(home_wins)}
         ]
-        print(stats)
+
         return jsonify(stats)
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        return jsonify({'error': f'An error occurred processing your request. {e}'})
+        return jsonify({'error': 'An error occurred processing your request.'})
+
 
 
 @app.route('/input_stats', methods=['POST'])
