@@ -106,7 +106,7 @@ def team_stats():
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        return jsonify({'error': 'An error occurred processing your request.'})
+        return jsonify({'error': f'An error occurred processing your request. {e}'})
 
 
 @app.route('/input_stats', methods=['POST'])
