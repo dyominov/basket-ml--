@@ -106,7 +106,7 @@ def team_stats():
 
 
 @app.route('/input_stats', methods=['POST'])
-def team_stats():
+def input_stats():
     try:
         data = request.json
         home_team = data['homeTeam']
