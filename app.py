@@ -125,6 +125,7 @@ def input_stats():
         # Формирование ответа
         stats = [
             {'Total games': int(total_home_games)},
+            {'Operand': operand},
             {'Expected count': int(expected_count)},
         ]
         return jsonify(stats)
