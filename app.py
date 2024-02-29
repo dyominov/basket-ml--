@@ -131,11 +131,10 @@ def input_stats():
         
         # Формирование ответа
         stats = [
+            {'Operand': operand},
             {'Total games current match': int(total_games)},
             {'Total games for home': int(total_games_home)},
             {'Total games for away': int(total_games_away)},
-            
-            {'Operand': operand},
             {'Expected count current match': int(expected_count)},
             {'Expected count for home': int(expected_count_home_all)},
             {'Expected count for away': int(expected_count_away_all)},  
