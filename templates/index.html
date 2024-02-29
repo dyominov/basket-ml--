@@ -115,7 +115,7 @@
             });
         }
 
-        function getTeamStats() {
+  function getTeamStats() {
     const homeTeam = document.getElementById('homeTeam').value;
     const awayTeam = document.getElementById('awayTeam').value;
 
@@ -131,12 +131,18 @@
     .then(response => response.json())
     .then(data => {
         let formattedResponse = '';
-        data.forEach(item => {
-            const key = Object.keys(item)[0]; 
-            const value = item[key]; 
-            formattedResponse += `${key}: ${value}\n`; 
-        });
-
+        if (Array.isArray(data)) {
+            data.forEach(item => {
+                const key = Object.keys(item)[0]; 
+                const value = item[key]; 
+                formattedResponse += `${key}: ${value}\n`; 
+            });
+        } else {
+            Object.keys(data).forEach(key => {
+                const value = data[key];
+                formattedResponse += `${key}: ${value}\n`;
+            });
+        }
         document.getElementById('statsResponse').textContent = formattedResponse; 
     })
     .catch((error) => {
@@ -145,14 +151,11 @@
     });
 }
 
-
-
-        function getInputStats() {
+function getInputStats() {
     const homeTeam = document.getElementById('homeTeam').value;
     const awayTeam = document.getElementById('awayTeam').value;
     const operand = document.getElementById('operand').value;
     const value = document.getElementById('score').value;
-
 
     const data = { homeTeam: homeTeam, awayTeam: awayTeam , operand: operand, value: value};
 
@@ -166,12 +169,18 @@
     .then(response => response.json())
     .then(data => {
         let formattedResponse = '';
-        data.forEach(item => {
-            const key = Object.keys(item)[0]; 
-            const value = item[key]; 
-            formattedResponse += `${key}: ${value}\n`; 
-        });
-
+        if (Array.isArray(data)) {
+            data.forEach(item => {
+                const key = Object.keys(item)[0]; 
+                const value = item[key]; 
+                formattedResponse += `${key}: ${value}\n`; 
+            });
+        } else {
+            Object.keys(data).forEach(key => {
+                const value = data[key];
+                formattedResponse += `${key}: ${value}\n`;
+            });
+        }
         document.getElementById('inputStatsResponse').textContent = formattedResponse; 
     })
     .catch((error) => {
