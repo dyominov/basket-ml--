@@ -70,14 +70,17 @@ def predict():
 def team_stats():
     try:
         data = request.json
+        print(data)
         home_team = data['homeTeam']
         away_team = data['awayTeam']
 
         # Фильтрация датафрейма по домашним играм home_team против away_team
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+        print(filtered_df)
         
         # Расчет статистик
         total_home_games = len(filtered_df)
+        print(total_home_games)
         min_total_score = filtered_df['totalScores'].min()
         max_total_score = filtered_df['totalScores'].max()  
         min_home_score = filtered_df['home'].min() 
@@ -98,6 +101,7 @@ def team_stats():
             {'max_away_score': max_away_score},
             {'home_wins': home_wins}
         ]
+        print(stats)
         return jsonify(stats)
 
     except Exception as e:
