@@ -78,34 +78,60 @@ def team_stats():
         
         # Расчет статистик
         total_home_games = len(filtered_df)
-        avg_total_score = filtered_df['totalScores'].mean()  # Предполагается, что у вас есть колонка totalScore
-        avg_home_score = filtered_df['home'].mean()  # Предполагается, что у вас есть колонка homeScore
-        avg_away_score = filtered_df['away'].mean()  # Предполагается, что у вас есть колонка awayScore
+        min_total_score = filtered_df['totalScores'].min()
+        max_total_score = filtered_df['totalScores'].max()  
+        min_home_score = filtered_df['home'].min() 
+        max_home_score = filtered_df['home'].max()
+        min_away_score = filtered_df['away'].min()
+        max_away_score = filtered_df['away'].max()
+        
         home_wins = len(filtered_df[filtered_df['home'] > filtered_df['away']])
-
-        # Расчет побед в каждой четверти
-        first_quarter_wins = len(filtered_df[filtered_df['firstQuarterHomeScore'] > filtered_df['firstQuarterAwayScore']])
-        second_quarter_wins = len(filtered_df[filtered_df['secondQuarterHomeScore'] > filtered_df['secondQuarterAwayScore']])
-        third_quarter_wins = len(filtered_df[filtered_df['thirdQuarterHomeScore'] > filtered_df['thirdQuarterAwayScore']])
-        fourth_quarter_wins = len(filtered_df[filtered_df['fourthQuarterHomeScore'] > filtered_df['fourthQuarterAwayScore']])
 
         # Формирование ответа
         stats = [
-            {'total_home_games': total_home_games},
-            {'avg_total_score': avg_total_score},
-            {'avg_home_score': avg_home_score},
-            {'avg_away_score': avg_away_score},
-            {'home_wins': home_wins},
-            {'first_quarter_wins': first_quarter_wins},
-            {'second_quarter_wins': second_quarter_wins},
-            {'third_quarter_wins': third_quarter_wins},
-            {'fourth_quarter_wins': fourth_quarter_wins}
+            {'Total games': total_home_games},
+            {'min_total_score': min_total_score},
+            {'max_total_score': max_total_score},
+            {'min_home_score': min_home_score},
+            {'max_home_score': max_home_score},
+            {'min_away_score': min_away_score},
+            {'max_away_score': max_away_score},
+            {'home_wins': home_wins}
         ]
         return jsonify(stats)
 
     except Exception as e:
         print(f"An error occurred: {e}")
         return jsonify({'error': 'An error occurred processing your request.'})
+
+
+@app.route('/input_stats', methods=['POST'])
+def team_stats():
+    try:
+        data = request.json
+        home_team = data['homeTeam']
+        away_team = data['awayTeam']
+        operand = data['operand']
+        value = data['value']
+
+        # Фильтрация датафрейма по домашним играм home_team против away_team
+        filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
+        
+        # Расчет статистик
+        total_home_games = len(filtered_df)
+        expected = filtered_df[operand] > value 
+        
+        # Формирование ответа
+        stats = [
+            {'Total games': total_home_games},
+            {'Expected count': expected},
+        ]
+        return jsonify(stats)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return jsonify({'error': 'An error occurred processing your request.'})
+
 
 
 
