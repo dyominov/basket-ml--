@@ -2,9 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from joblib import load
 import pandas as pd
 from flask_cors import CORS
-import pymongo
-
-from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
@@ -30,13 +27,6 @@ def predict():
     data = request.json
     away_team = data['awayTeam']
     home_team = data['homeTeam']
-    firstQuarterHomeScore = data['firstQuarterHomeScore']
-    firstQuarterAwayScore = data['firstQuarterAwayScore']
-    secondQuarterHomeScore = data['secondQuarterHomeScore']
-    secondQuarterAwayScore = data['secondQuarterAwayScore']
-    thirdQuarterHomeScore = data['thirdQuarterHomeScore']
-    thirdQuarterAwayScore = data['thirdQuarterAwayScore']
-
 
     # Подготовка данных для прогнозирования
     teams_for_prediction = pd.DataFrame({
@@ -45,18 +35,6 @@ def predict():
     })
     encoded_teams = one_hot_encoder.transform(teams_for_prediction).toarray()
     encoded_teams_df = pd.DataFrame(encoded_teams, columns=one_hot_encoder.get_feature_names_out())
-
-    score = pd.DataFrame({
-        'firstQuarterHomeScore': [firstQuarterHomeScore],
-        'firstQuarterAwayScore': [firstQuarterAwayScore],
-        'secondQuarterHomeScore': [secondQuarterHomeScore],
-        'secondQuarterAwayScore': [secondQuarterAwayScore],
-        'thirdQuarterHomeScore': [thirdQuarterHomeScore],
-        'thirdQuarterAwayScore': [thirdQuarterAwayScore],
-    })
-
-    encoded_teams_df = pd.concat([encoded_teams_df, score], axis=1)
-    print(encoded_teams_df[0])
 
     # Делаем предсказания и формируем ответ
     predictions = [

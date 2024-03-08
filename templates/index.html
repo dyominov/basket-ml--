@@ -56,13 +56,6 @@
         <option value="Brooklyn Nets (cyber)">Brooklyn Nets (cyber)</option>
         <option value="Sacramento Kings (cyber)">Sacramento Kings (cyber)</option>
     </select>
-    <input type="number" step="1" id='firstQuarterHomeScore' placeholder='Введите число' style="margin-left: 20px;">
-    <input type="number" step="1" id='firstQuarterAwayScore' placeholder='Введите число' style="margin-left: 20px;">
-    <input type="number" step="1" id='secondQuarterHomeScore' placeholder='Введите число' style="margin-left: 20px;">
-    <input type="number" step="1" id='secondQuarterAwayScore' placeholder='Введите число' style="margin-left: 20px;">
-    <input type="number" step="1" id='thirdQuarterHomeScore' placeholder='Введите число' style="margin-left: 20px;">
-    <input type="number" step="1" id='thirdQuarterAwayScore' placeholder='Введите число' style="margin-left: 20px;">
-
 
     <button onclick="getPrediction()">Получить предсказание</button>
     <button onclick="getTeamStats()">Получить статистику</button>
@@ -87,25 +80,10 @@
         function getPrediction() {
             const homeTeam = document.getElementById('homeTeam').value;
             const awayTeam = document.getElementById('awayTeam').value;
-            const firstQuarterHomeScore = document.getElementById('firstQuarterHomeScore').value;
-            const firstQuarterAwayScore = document.getElementById('firstQuarterAwayScore').value;
-            const secondQuarterHomeScore = document.getElementById('secondQuarterHomeScore').value;
-            const secondQuarterAwayScore = document.getElementById('secondQuarterAwayScore').value;
-            const thirdQuarterHomeScore = document.getElementById('thirdQuarterHomeScore').value;
-            const thirdQuarterAwayScore = document.getElementById('thirdQuarterAwayScore').value;
-
-
-
 
             const data = {
                 homeTeam: homeTeam,
                 awayTeam: awayTeam,
-                firstQuarterHomeScore: firstQuarterHomeScore,
-                firstQuarterAwayScore: firstQuarterAwayScore,
-                secondQuarterHomeScore: secondQuarterHomeScore,
-                secondQuarterAwayScore: secondQuarterAwayScore,
-                thirdQuarterHomeScore: thirdQuarterHomeScore,
-                thirdQuarterAwayScore: thirdQuarterAwayScore,
             };
 
             fetch('http://18.233.168.123:5000/predict', {
