@@ -101,7 +101,7 @@ def team_stats():
         return jsonify(stats)
 
     except Exception as e:
-    print(f"An error occurred: {e}")
+        print(f"An error occurred: {e}")
     return jsonify({'error': 'An error occurred processing your request.'})
 
 
