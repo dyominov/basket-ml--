@@ -61,6 +61,7 @@ def team_stats():
         total_home_games = len(filtered_df)
         min_total_score = filtered_df['totalScores'].min()
         max_total_score = filtered_df['totalScores'].max()
+        mean_total_score = filtered_df['totalScores'].mean()
         min_home_score = filtered_df['home'].min()
         mean_home_score = filtered_df['home'].mean()
         max_home_score = filtered_df['home'].max()
@@ -68,6 +69,13 @@ def team_stats():
         mean_away_score = filtered_df['away'].mean()
         max_away_score = filtered_df['away'].max()
         home_wins = (filtered_df['home'] > filtered_df['away']).sum()
+        # Расчет динамики игры
+        first_half_home = filtered_df['firstQuarterHomeScore'] + filtered_df['secondQuarterHomeScore']
+        second_half_home = filtered_df['thirdQuarterHomeScore'] + filtered_df['fourthQuarterHomeScore']
+        first_half_away = filtered_df['firstQuarterAwayScore'] + filtered_df['secondQuarterAwayScore']
+        second_half_away = filtered_df['thirdQuarterAwayScore'] + filtered_df['fourthQuarterAwayScore']
+        first_half = first_half_home.mean() + first_half_away.mean()
+        second_half = second_half_home.mean() + second_half_away.mean()
 
         quarter_stats = {}
         quarters = ['firstQuarter', 'secondQuarter', 'thirdQuarter', 'fourthQuarter']
@@ -85,6 +93,7 @@ def team_stats():
         stats = [
             {'Total games': int(total_home_games)},
             {'min_total_score': float(min_total_score)},
+            {'mean_total_score': float(mean_total_score)},
             {'max_total_score': float(max_total_score)},
             {'min_home_score': float(min_home_score)},
             {'mean_home_score': float(mean_home_score)},
@@ -92,7 +101,13 @@ def team_stats():
             {'min_away_score': float(min_away_score)},
             {'mean_away_score': float(mean_away_score)},
             {'max_away_score': float(max_away_score)},
-            {'home_wins': int(home_wins)}
+            {'home_wins': int(home_wins)},
+            {'first_half_home_mean': first_half_home.mean()},
+            {'second_half_home_mean': second_half_home.mean()},
+            {'first_half_away_mean': first_half_away.mean()},
+            {'second_half_away_mean': second_half_away.mean()},
+            {'first_half': first_half},
+            {'second_half': second_half}
         ]
 
         for key, value in quarter_stats.items():
