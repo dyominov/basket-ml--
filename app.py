@@ -62,24 +62,43 @@ def team_stats():
         min_total_score = filtered_df['totalScores'].min()
         max_total_score = filtered_df['totalScores'].max()
         min_home_score = filtered_df['home'].min()
+        mean_home_score = filtered_df['home'].mean()
         max_home_score = filtered_df['home'].max()
         min_away_score = filtered_df['away'].min()
+        mean_away_score = filtered_df['away'].mean()
         max_away_score = filtered_df['away'].max()
         home_wins = (filtered_df['home'] > filtered_df['away']).sum()
 
-        # Преобразование значений в int или float
-        stats = [
-            {'Total games': int(total_home_games)},
-            {'min_total_score': float(min_total_score)},
-            {'max_total_score': float(max_total_score)},
-            {'min_home_score': float(min_home_score)},
-            {'max_home_score': float(max_home_score)},
-            {'min_away_score': float(min_away_score)},
-            {'max_away_score': float(max_away_score)},
-            {'home_wins': int(home_wins)}
-        ]
+        quarter_stats = {}
+        quarters = ['firstQuarter', 'secondQuarter', 'thirdQuarter', 'fourthQuarter']
+        for quarter in quarters:
+            home_score_col = f'{quarter}HomeScore'
+            away_score_col = f'{quarter}AwayScore'
+    
+            quarter_stats[f'{quarter}_home_mean'] = filtered_df[home_score_col].mean()
+            quarter_stats[f'{quarter}_away_mean'] = filtered_df[away_score_col].mean()
+            quarter_stats[f'{quarter}_home_max'] = filtered_df[home_score_col].max()
+            quarter_stats[f'{quarter}_away_max'] = filtered_df[away_score_col].max()
+            quarter_stats[f'{quarter}_home_min'] = filtered_df[home_score_col].min()
+            quarter_stats[f'{quarter}_away_min'] = filtered_df[away_score_col].min()
 
-        return jsonify(stats)
+    stats = [
+        {'Total games': int(total_home_games)},
+        {'min_total_score': float(min_total_score)},
+        {'max_total_score': float(max_total_score)},
+        {'min_home_score': float(min_home_score)},
+        {'mean_home_score': float(mean_home_score)},
+        {'max_home_score': float(max_home_score)},
+        {'min_away_score': float(min_away_score)},
+        {'mean_away_score': float(mean_away_score)},
+        {'max_away_score': float(max_away_score)},
+        {'home_wins': int(home_wins)}
+    ]
+
+    for key, value in quarter_stats.items():
+        stats.append({key: float(value)})
+
+    return jsonify(stats)
 
     except Exception as e:
         print(f"An error occurred: {e}")
