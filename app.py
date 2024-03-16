@@ -56,7 +56,7 @@ def team_stats():
 
         # Фильтрация датафрейма
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
-        
+
         # Расчет статистик
         total_home_games = len(filtered_df)
         min_total_score = filtered_df['totalScores'].min()
@@ -74,7 +74,7 @@ def team_stats():
         for quarter in quarters:
             home_score_col = f'{quarter}HomeScore'
             away_score_col = f'{quarter}AwayScore'
-    
+
             quarter_stats[f'{quarter}_home_mean'] = filtered_df[home_score_col].mean()
             quarter_stats[f'{quarter}_away_mean'] = filtered_df[away_score_col].mean()
             quarter_stats[f'{quarter}_home_max'] = filtered_df[home_score_col].max()
@@ -82,28 +82,27 @@ def team_stats():
             quarter_stats[f'{quarter}_home_min'] = filtered_df[home_score_col].min()
             quarter_stats[f'{quarter}_away_min'] = filtered_df[away_score_col].min()
 
-    stats = [
-        {'Total games': int(total_home_games)},
-        {'min_total_score': float(min_total_score)},
-        {'max_total_score': float(max_total_score)},
-        {'min_home_score': float(min_home_score)},
-        {'mean_home_score': float(mean_home_score)},
-        {'max_home_score': float(max_home_score)},
-        {'min_away_score': float(min_away_score)},
-        {'mean_away_score': float(mean_away_score)},
-        {'max_away_score': float(max_away_score)},
-        {'home_wins': int(home_wins)}
-    ]
+        stats = [
+            {'Total games': int(total_home_games)},
+            {'min_total_score': float(min_total_score)},
+            {'max_total_score': float(max_total_score)},
+            {'min_home_score': float(min_home_score)},
+            {'mean_home_score': float(mean_home_score)},
+            {'max_home_score': float(max_home_score)},
+            {'min_away_score': float(min_away_score)},
+            {'mean_away_score': float(mean_away_score)},
+            {'max_away_score': float(max_away_score)},
+            {'home_wins': int(home_wins)}
+        ]
 
-    for key, value in quarter_stats.items():
-        stats.append({key: float(value)})
+        for key, value in quarter_stats.items():
+            stats.append({key: float(value)})
 
-    return jsonify(stats)
+        return jsonify(stats)
 
     except Exception as e:
-        print(f"An error occurred: {e}")
-        return jsonify({'error': 'An error occurred processing your request.'})
-
+    print(f"An error occurred: {e}")
+    return jsonify({'error': 'An error occurred processing your request.'})
 
 
 @app.route('/input_stats', methods=['POST'])
@@ -118,17 +117,17 @@ def input_stats():
         # Фильтрация датафрейма
         filtered_df = df[(df['homeTeam'] == home_team) & (df['awayTeam'] == away_team)]
         filtered_df_all_home = df[(df['homeTeam'] == home_team)]
-        filtered_df_all_away = df[(df['awayTeam'] == away_team)]        
+        filtered_df_all_away = df[(df['awayTeam'] == away_team)]
 
         # Расчет ожидаемого количества
         total_games = len(filtered_df)
         total_games_home = len(filtered_df_all_home)
         total_games_away = len(filtered_df_all_away)
-        
+
         expected_count = (filtered_df[operand] > value).sum()
         expected_count_home_all = (filtered_df_all_home[operand] > value).sum()
         expected_count_away_all = (filtered_df_all_away[operand] > value).sum()
-        
+
         # Формирование ответа
         stats = [
             {'Operand': operand},
@@ -137,15 +136,12 @@ def input_stats():
             {'Total games for away': int(total_games_away)},
             {'Expected count current match': int(expected_count)},
             {'Expected count for home': int(expected_count_home_all)},
-            {'Expected count for away': int(expected_count_away_all)},  
+            {'Expected count for away': int(expected_count_away_all)},
         ]
         return jsonify(stats)
     except Exception as e:
         print(f"An error occurred: {e}")
         return jsonify({'error': str(e)})
-
-
-
 
 
 if __name__ == "__main__":
