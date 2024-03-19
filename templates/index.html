@@ -106,14 +106,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                let formattedResponse = '';
-                data.forEach(item => {
-                    const key = Object.keys(item)[0]; 
-                    const value = item[key]; 
-                    formattedResponse += `${key}: ${value}\n`; 
-                });
-
-                document.getElementById('predictionResponse').textContent = formattedResponse; 
+                displayStatsAsTable(data, 'predictionResponse');
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
@@ -136,7 +129,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                displayStatsAsTable(data);
+                displayStatsAsTable(data, 'statsResponse');
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
@@ -160,21 +153,8 @@
         body: JSON.stringify(data),
     })
     .then(response => response.json())
-    .then(data => {
-        let formattedResponse = '';
-        if (Array.isArray(data)) {
-            data.forEach(item => {
-                const key = Object.keys(item)[0]; 
-                const value = item[key]; 
-                formattedResponse += `${key}: ${value}\n`; 
-            });
-        } else {
-            Object.keys(data).forEach(key => {
-                const value = data[key];
-                formattedResponse += `${key}: ${value}\n`;
-            });
-        }
-        document.getElementById('inputStatsResponse').textContent = formattedResponse; 
+    . .then(data => {
+                displayStatsAsTable(data, 'inputStatsResponse');
     })
     .catch((error) => {
         console.error('Ошибка:', error);
@@ -182,8 +162,8 @@
     });
 }
 
-        function displayStatsAsTable(data) {
-    const statsContainer = document.getElementById('statsResponse');
+        function displayStatsAsTable(data, element) {
+    const statsContainer = document.getElementById(element);
     let table = '<table>';
     table += '<thead><tr><th>Показатель</th><th>Значение</th></tr></thead>';
     table += '<tbody>';
