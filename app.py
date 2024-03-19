@@ -79,7 +79,6 @@ def team_stats():
         second_half = second_half_home.mean() + second_half_away.mean()
 
         quarter_stats = {}
-        score_differences = {}
         quarters = ['firstQuarter', 'secondQuarter', 'thirdQuarter', 'fourthQuarter']
         for quarter in quarters:
             home_score_col = f'{quarter}HomeScore'
@@ -93,7 +92,7 @@ def team_stats():
             quarter_stats[f'{quarter}_away_min'] = filtered_df[away_score_col].min()
 
             # Добавление информации о разнице в очках после каждой четверти
-            score_differences[f'{quarter}_difference'] = (filtered_df[home_score_col] - filtered_df[away_score_col]).mean()
+            quarter_stats[f'{quarter}_difference'] = (filtered_df[home_score_col] - filtered_df[away_score_col]).mean()
 
         stats = [
             {'Total games': int(total_home_games)},
@@ -113,8 +112,6 @@ def team_stats():
             {'Second half home mean': second_half_home.mean()},
             {'First half away mean': first_half_away.mean()},
             {'Second half away mean': second_half_away.mean()},
-            # Добавляем разницу в очках по четвертям
-            {'Score differences': score_differences}
         ]
 
         for key, value in quarter_stats.items():
