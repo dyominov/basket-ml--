@@ -79,6 +79,7 @@ def team_stats():
         second_half = second_half_home.mean() + second_half_away.mean()
 
         quarter_stats = {}
+        score_differences = {}
         quarters = ['firstQuarter', 'secondQuarter', 'thirdQuarter', 'fourthQuarter']
         for quarter in quarters:
             home_score_col = f'{quarter}HomeScore'
@@ -92,7 +93,7 @@ def team_stats():
             quarter_stats[f'{quarter}_away_min'] = filtered_df[away_score_col].min()
 
             # Добавление информации о разнице в очках после каждой четверти
-            quarter_stats[f'{quarter}_difference'] = (filtered_df[home_score_col] - filtered_df[away_score_col]).mean()
+            score_differences[f'{quarter}_difference'] = (filtered_df[home_score_col] - filtered_df[away_score_col]).mean()
 
         stats = [
             {'Total games': int(total_home_games)},
@@ -115,6 +116,9 @@ def team_stats():
         ]
 
         for key, value in quarter_stats.items():
+            stats.append({key: float(value)})
+
+        for key, value in score_differences.items():
             stats.append({key: float(value)})
 
         return jsonify(stats)
