@@ -92,6 +92,7 @@ def team_stats():
 
         stats = [
             {'Total games': int(total_home_games)},
+            {'home_wins': int(home_wins)},
             {'min_total_score': float(min_total_score)},
             {'mean_total_score': float(mean_total_score)},
             {'max_total_score': float(max_total_score)},
@@ -101,13 +102,12 @@ def team_stats():
             {'min_away_score': float(min_away_score)},
             {'mean_away_score': float(mean_away_score)},
             {'max_away_score': float(max_away_score)},
-            {'home_wins': int(home_wins)},
+            {'first_half': first_half},
+            {'second_half': second_half},
             {'first_half_home_mean': first_half_home.mean()},
             {'second_half_home_mean': second_half_home.mean()},
             {'first_half_away_mean': first_half_away.mean()},
             {'second_half_away_mean': second_half_away.mean()},
-            {'first_half': first_half},
-            {'second_half': second_half}
         ]
 
         for key, value in quarter_stats.items():
