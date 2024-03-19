@@ -114,72 +114,70 @@
             });
         }
 
-        function getTeamStats() {
-            const homeTeam = document.getElementById('homeTeam').value;
-            const awayTeam = document.getElementById('awayTeam').value;
+            function getTeamStats() {
+        const homeTeam = document.getElementById('homeTeam').value;
+        const awayTeam = document.getElementById('awayTeam').value;
 
-            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+        const data = { homeTeam: homeTeam, awayTeam: awayTeam };
 
-            fetch('http://18.233.168.123:5000/team_stats', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                displayStatsAsTable(data, 'statsResponse');
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
-            });
-        }
+        fetch('http://18.233.168.123:5000/team_stats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            displayStatsAsTable(data, 'statsResponse');
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+            document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
+        });
+    }
 
-        function getInputStats() {
-    const homeTeam = document.getElementById('homeTeam').value;
-    const awayTeam = document.getElementById('awayTeam').value;
-    const operand = document.getElementById('operand').value;
-    const value = document.getElementById('score').value;
+    function getInputStats() {
+        const homeTeam = document.getElementById('homeTeam').value;
+        const awayTeam = document.getElementById('awayTeam').value;
+        const operand = document.getElementById('operand').value;
+        const value = document.getElementById('score').value;
 
-    const data = { homeTeam: homeTeam, awayTeam: awayTeam , operand: operand, value: value};
+        const data = { homeTeam: homeTeam, awayTeam: awayTeam, operand: operand, value: value };
 
-    fetch('http://18.233.168.123:5000/input_stats', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    . .then(data => {
-                displayStatsAsTable(data, 'inputStatsResponse');
-    })
-    .catch((error) => {
-        console.error('Ошибка:', error);
-        document.getElementById('inputStatsResponse').textContent = 'Ошибка: ' + error;
-    });
-}
+        fetch('http://18.233.168.123:5000/input_stats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            displayStatsAsTable(data, 'inputStatsResponse');
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+            document.getElementById('inputStatsResponse').textContent = 'Ошибка: ' + error;
+        });
+    }
 
-        function displayStatsAsTable(data, element) {
-    const statsContainer = document.getElementById(element);
-    let table = '<table>';
-    table += '<thead><tr><th>Показатель</th><th>Значение</th></tr></thead>';
-    table += '<tbody>';
+    function displayStatsAsTable(data, elementId) {
+        const statsContainer = document.getElementById(elementId);
+        let table = '<table>';
+        table += '<thead><tr><th>Показатель</th><th>Значение</th></tr></thead>';
+        table += '<tbody>';
 
-    data.forEach(item => {
-        // Предполагается, что каждый элемент списка - это объект с одной парой ключ-значение
-        const key = Object.keys(item)[0]; // Получаем ключ (название статистики)
-        const value = item[key]; // Получаем значение статистики
-        table += `<tr><td>${key.replace(/_/g, ' ')}</td><td>${value}</td></tr>`;
-    });
+        data.forEach(item => {
+            const key = Object.keys(item)[0]; // Получаем ключ (название статистики)
+            const value = item[key]; // Получаем значение статистики
+            table += `<tr><td>${key.replace(/_/g, ' ')}</td><td>${value}</td></tr>`;
+        });
 
-    table += '</tbody></table>';
-    statsContainer.innerHTML = table;
-}
-
-    </script>
+        table += '</tbody></table>';
+        statsContainer.innerHTML = table;
+    }
+</script>
 
 </body>
 </html>
