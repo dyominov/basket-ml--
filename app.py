@@ -69,6 +69,7 @@ def team_stats():
         mean_away_score = filtered_df['away'].mean()
         max_away_score = filtered_df['away'].max()
         home_wins = (filtered_df['home'] > filtered_df['away']).sum()
+
         # Расчет динамики игры
         first_half_home = filtered_df['firstQuarterHomeScore'] + filtered_df['secondQuarterHomeScore']
         second_half_home = filtered_df['thirdQuarterHomeScore'] + filtered_df['fourthQuarterHomeScore']
@@ -78,6 +79,7 @@ def team_stats():
         second_half = second_half_home.mean() + second_half_away.mean()
 
         quarter_stats = {}
+        score_differences = {}
         quarters = ['firstQuarter', 'secondQuarter', 'thirdQuarter', 'fourthQuarter']
         for quarter in quarters:
             home_score_col = f'{quarter}HomeScore'
@@ -90,24 +92,29 @@ def team_stats():
             quarter_stats[f'{quarter}_home_min'] = filtered_df[home_score_col].min()
             quarter_stats[f'{quarter}_away_min'] = filtered_df[away_score_col].min()
 
+            # Добавление информации о разнице в очках после каждой четверти
+            score_differences[f'{quarter}_difference'] = (filtered_df[home_score_col] - filtered_df[away_score_col]).mean()
+
         stats = [
             {'Total games': int(total_home_games)},
-            {'home_wins': int(home_wins)},
-            {'min_total_score': float(min_total_score)},
-            {'mean_total_score': float(mean_total_score)},
-            {'max_total_score': float(max_total_score)},
-            {'min_home_score': float(min_home_score)},
-            {'mean_home_score': float(mean_home_score)},
-            {'max_home_score': float(max_home_score)},
-            {'min_away_score': float(min_away_score)},
-            {'mean_away_score': float(mean_away_score)},
-            {'max_away_score': float(max_away_score)},
-            {'first_half': first_half},
-            {'second_half': second_half},
-            {'first_half_home_mean': first_half_home.mean()},
-            {'second_half_home_mean': second_half_home.mean()},
-            {'first_half_away_mean': first_half_away.mean()},
-            {'second_half_away_mean': second_half_away.mean()},
+            {'Home wins': int(home_wins)},
+            {'Min total score': float(min_total_score)},
+            {'Mean total score': float(mean_total_score)},
+            {'Max total score': float(max_total_score)},
+            {'Min home score': float(min_home_score)},
+            {'Mean home score': float(mean_home_score)},
+            {'Max home score': float(max_home_score)},
+            {'Min away score': float(min_away_score)},
+            {'Mean away score': float(mean_away_score)},
+            {'Max away score': float(max_away_score)},
+            {'First half': first_half},
+            {'Second half': second_half},
+            {'First half home mean': first_half_home.mean()},
+            {'Second half home mean': second_half_home.mean()},
+            {'First half away mean': first_half_away.mean()},
+            {'Second half away mean': second_half_away.mean()},
+            # Добавляем разницу в очках по четвертям
+            {'Score differences': score_differences}
         ]
 
         for key, value in quarter_stats.items():
@@ -117,7 +124,7 @@ def team_stats():
 
     except Exception as e:
         print(f"An error occurred: {e}")
-    return jsonify({'error': 'An error occurred processing your request.'})
+        return jsonify({'error': 'An error occurred processing your request.'})
 
 
 @app.route('/input_stats', methods=['POST'])
