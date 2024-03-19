@@ -183,28 +183,22 @@
 }
 
         function displayStatsAsTable(data) {
-            const statsContainer = document.getElementById('statsResponse');
-            let table = '<table>';
-            table += '<thead><tr><th>Показатель</th><th>Home</th><th>Away</th></tr></thead>';
-            table += '<tbody>';
+    const statsContainer = document.getElementById('statsResponse');
+    let table = '<table>';
+    table += '<thead><tr><th>Показатель</th><th>Значение</th></tr></thead>';
+    table += '<tbody>';
 
-            const stats = Object.keys(data);
-            for (const stat of stats) {
-                table += `<tr><td>${stat.replace(/_/g, ' ')}</td>`;
-                if (stat.includes('home') || stat.includes('first') || stat.includes('second') || stat.includes('third') || stat.includes('fourth')) {
-                    table += `<td>${data[stat]}</td><td
-</td>`;
-                } else if (stat.includes('away')) {
-                    table += `<td></td><td>${data[stat]}</td>`;
-                } else {
-                    table += `<td>${data[stat]}</td><td>${data[stat]}</td>`;
-                }
-                table += '</tr>';
-            }
+    data.forEach(item => {
+        // Предполагается, что каждый элемент списка - это объект с одной парой ключ-значение
+        const key = Object.keys(item)[0]; // Получаем ключ (название статистики)
+        const value = item[key]; // Получаем значение статистики
+        table += `<tr><td>${key.replace(/_/g, ' ')}</td><td>${value}</td></tr>`;
+    });
 
-            table += '</tbody></table>';
-            statsContainer.innerHTML = table;
-        }
+    table += '</tbody></table>';
+    statsContainer.innerHTML = table;
+}
+
     </script>
 
 </body>
