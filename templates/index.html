@@ -9,6 +9,17 @@
         select, button { margin: 10px; padding: 10px; width: calc(100% - 20px); box-sizing: border-box; }
         pre { background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin: 10px; }
         h2, h3 { margin-left: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
         @media (max-width: 600px) {
             select, button { margin: 10px 5%; padding: 10px; width: calc(90% - 20px); }
             pre, h2, h3 { margin: 10px 5%; }
@@ -64,15 +75,15 @@
         <option value="away">Away Score</option>
         <option value="totalScores">Total Score</option>
     </select>
-        <input type="number" step="0.01" id='score' placeholder='Введите число' style="margin-left: 20px;">
+    <input type="number" step="0.01" id='score' placeholder='Введите число' style="margin-left: 20px;">
     <button onclick="getInputStats()">Получить статистику</button>
-
 
     <h3>Прогноз результатов игры:</h3>
     <pre id="predictionResponse"></pre>
 
     <h3>Статистика по играм:</h3>
-    <pre id="statsResponse"></pre>
+    <div id="statsResponse"></div>
+
     <h3>Статистика по введенному значению:</h3>
     <pre id="inputStatsResponse"></pre>
 
@@ -110,43 +121,30 @@
             });
         }
 
-  function getTeamStats() {
-    const homeTeam = document.getElementById('homeTeam').value;
-    const awayTeam = document.getElementById('awayTeam').value;
+        function getTeamStats() {
+            const homeTeam = document.getElementById('homeTeam').value;
+            const awayTeam = document.getElementById('awayTeam').value;
 
-    const data = { homeTeam: homeTeam, awayTeam: awayTeam };
+            const data = { homeTeam: homeTeam, awayTeam: awayTeam };
 
-    fetch('http://18.233.168.123:5000/team_stats', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        let formattedResponse = '';
-        if (Array.isArray(data)) {
-            data.forEach(item => {
-                const key = Object.keys(item)[0]; 
-                const value = item[key]; 
-                formattedResponse += `${key}: ${value}\n`; 
-            });
-        } else {
-            Object.keys(data).forEach(key => {
-                const value = data[key];
-                formattedResponse += `${key}: ${value}\n`;
+            fetch('http://18.233.168.123:5000/team_stats', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayStatsAsTable(data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
             });
         }
-        document.getElementById('statsResponse').textContent = formattedResponse; 
-    })
-    .catch((error) => {
-        console.error('Ошибка:', error);
-        document.getElementById('statsResponse').textContent = 'Ошибка: ' + error;
-    });
-}
 
-function getInputStats() {
+        function getInputStats() {
     const homeTeam = document.getElementById('homeTeam').value;
     const awayTeam = document.getElementById('awayTeam').value;
     const operand = document.getElementById('operand').value;
@@ -184,6 +182,29 @@ function getInputStats() {
     });
 }
 
+        function displayStatsAsTable(data) {
+            const statsContainer = document.getElementById('statsResponse');
+            let table = '<table>';
+            table += '<thead><tr><th>Показатель</th><th>Home</th><th>Away</th></tr></thead>';
+            table += '<tbody>';
+
+            const stats = Object.keys(data);
+            for (const stat of stats) {
+                table += `<tr><td>${stat.replace(/_/g, ' ')}</td>`;
+                if (stat.includes('home') || stat.includes('first') || stat.includes('second') || stat.includes('third') || stat.includes('fourth')) {
+                    table += `<td>${data[stat]}</td><td
+</td>`;
+                } else if (stat.includes('away')) {
+                    table += `<td></td><td>${data[stat]}</td>`;
+                } else {
+                    table += `<td>${data[stat]}</td><td>${data[stat]}</td>`;
+                }
+                table += '</tr>';
+            }
+
+            table += '</tbody></table>';
+            statsContainer.innerHTML = table;
+        }
     </script>
 
 </body>
