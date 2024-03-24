@@ -1,0 +1,145 @@
+TeamPair,MeanActualScores,MeanPredictedScores,MeanAbsoluteError,MatchCount
+Atlanta Hawks (cyber) - Boston Celtics (cyber),202.52173913043478,205.67214036558312,9.784036617108654,46.0
+Atlanta Hawks (cyber) - Brooklyn Nets (cyber),199.1,200.05789944660341,10.255789944660341,40.0
+Atlanta Hawks (cyber) - Cleveland Cavaliers (cyber),209.86,206.60254831462177,9.451286471905911,50.0
+Atlanta Hawks (cyber) - Miami Heat (cyber),202.48275862068965,204.34510561835128,11.253279504081078,58.0
+Atlanta Hawks (cyber) - Milwaukee Bucks (cyber),222.46341463414635,221.12152586303677,8.430132253924137,41.0
+Atlanta Hawks (cyber) - New York Knicks (cyber),211.82978723404256,209.35602016028895,10.01080550804206,47.0
+Atlanta Hawks (cyber) - Philadelphia 76ers (cyber),205.89795918367346,205.72512205546508,9.751523139461321,49.0
+Boston Celtics (cyber) - Atlanta Hawks (cyber),205.3877551020408,204.34218902277107,10.018781608062456,49.0
+Boston Celtics (cyber) - Brooklyn Nets (cyber),192.2,194.0853480584977,10.07235653723318,45.0
+Boston Celtics (cyber) - Cleveland Cavaliers (cyber),202.10714285714286,201.71469227430717,10.566384610615318,28.0
+Boston Celtics (cyber) - Denver Nuggets (cyber),205.3125,205.9723790555209,8.684047381940111,16.0
+Boston Celtics (cyber) - Memphis Grizzlies (cyber),198.5,198.2579756422654,8.582447150859403,18.0
+Boston Celtics (cyber) - Miami Heat (cyber),198.64,199.3271858173133,8.080737701922404,25.0
+Boston Celtics (cyber) - Milwaukee Bucks (cyber),218.42307692307693,215.07412008083554,7.3233476674352005,26.0
+Boston Celtics (cyber) - New York Knicks (cyber),202.94736842105263,202.81520864900236,11.588673228999877,38.0
+Boston Celtics (cyber) - Philadelphia 76ers (cyber),199.11764705882354,200.95092817597828,12.809096522346552,17.0
+Boston Celtics (cyber) - Phoenix Suns (cyber),204.3793103448276,204.07801355955212,9.458547516001074,29.0
+Boston Celtics (cyber) - Sacramento Kings (cyber),207.03846153846155,207.65966865743928,9.83387164173544,26.0
+Brooklyn Nets (cyber) - Atlanta Hawks (cyber),199.75555555555556,199.73532495609834,11.438562776802184,45.0
+Brooklyn Nets (cyber) - Boston Celtics (cyber),194.68571428571428,196.68882029476632,6.726974327823755,35.0
+Brooklyn Nets (cyber) - Cleveland Cavaliers (cyber),196.96774193548387,196.9987162273426,8.483829555720728,31.0
+Brooklyn Nets (cyber) - Miami Heat (cyber),191.5818181818182,193.8036855943668,7.288009846146096,55.0
+Brooklyn Nets (cyber) - Milwaukee Bucks (cyber),218.77777777777777,212.9744890417621,10.9011719428553,27.0
+Brooklyn Nets (cyber) - New York Knicks (cyber),198.95,198.3303204199457,8.116516020997285,40.0
+Brooklyn Nets (cyber) - Philadelphia 76ers (cyber),193.77777777777777,195.91493870142918,8.879437633492127,36.0
+Cleveland Cavaliers (cyber) - Atlanta Hawks (cyber),205.1875,206.03751331642385,9.022396388184328,48.0
+Cleveland Cavaliers (cyber) - Boston Celtics (cyber),203.76190476190476,203.1021811556722,8.481056245508197,42.0
+Cleveland Cavaliers (cyber) - Brooklyn Nets (cyber),198.97435897435898,196.95857694073914,10.086482244444836,39.0
+Cleveland Cavaliers (cyber) - Denver Nuggets (cyber),206.54545454545453,207.59721709734723,11.599747008849745,11.0
+Cleveland Cavaliers (cyber) - Memphis Grizzlies (cyber),198.44444444444446,200.31760397971385,10.701955997745983,9.0
+Cleveland Cavaliers (cyber) - Miami Heat (cyber),202.84444444444443,201.50259990028775,9.743924464386906,45.0
+Cleveland Cavaliers (cyber) - Milwaukee Bucks (cyber),214.87234042553192,215.81579039190063,9.243561088844729,47.0
+Cleveland Cavaliers (cyber) - New York Knicks (cyber),205.2,204.801375866034,9.009931206698301,40.0
+Cleveland Cavaliers (cyber) - Philadelphia 76ers (cyber),201.8095238095238,202.749745646628,7.809523809523809,42.0
+Cleveland Cavaliers (cyber) - Phoenix Suns (cyber),204.22222222222223,206.44091142587328,7.5782841254851565,9.0
+Cleveland Cavaliers (cyber) - Sacramento Kings (cyber),213.84615384615384,210.7645314568103,7.896021523256014,13.0
+Denver Nuggets (cyber) - Boston Celtics (cyber),205.08,204.61339977398544,9.46824806328407,25.0
+Denver Nuggets (cyber) - Cleveland Cavaliers (cyber),206.25,205.2922171072981,12.176945723175479,16.0
+Denver Nuggets (cyber) - Golden State Warriors (cyber),206.57142857142858,204.9375322067908,10.71874769951494,28.0
+Denver Nuggets (cyber) - Los Angeles Clippers (cyber),203.64285714285714,202.62340214849024,7.804256222075598,14.0
+Denver Nuggets (cyber) - Los Angeles Lakers (cyber),203.89655172413794,205.86570548024895,8.747292158577762,29.0
+Denver Nuggets (cyber) - Memphis Grizzlies (cyber),206.0625,202.30280515501883,11.3125,16.0
+Denver Nuggets (cyber) - Milwaukee Bucks (cyber),217.85714285714286,217.23793493333207,6.823152152381133,21.0
+Denver Nuggets (cyber) - Minnesota Timberwolves (cyber),199.78947368421052,199.34756977404146,8.103015298835558,19.0
+Denver Nuggets (cyber) - Philadelphia 76ers (cyber),196.44444444444446,202.03907495124926,10.910597195138479,9.0
+Denver Nuggets (cyber) - Phoenix Suns (cyber),207.05882352941177,207.9111085515815,9.299346555789324,17.0
+Denver Nuggets (cyber) - Sacramento Kings (cyber),212.11428571428573,211.5349333547607,9.586712381564592,35.0
+Golden State Warriors (cyber) - Denver Nuggets (cyber),202.83333333333334,205.5461111771126,11.682037059037535,12.0
+Golden State Warriors (cyber) - Los Angeles Clippers (cyber),198.84375,199.74548711088428,10.53125,32.0
+Golden State Warriors (cyber) - Los Angeles Lakers (cyber),204.7037037037037,203.51727811390518,7.533837386313861,27.0
+Golden State Warriors (cyber) - Memphis Grizzlies (cyber),201.71428571428572,198.70579456025956,7.88240310842314,14.0
+Golden State Warriors (cyber) - Minnesota Timberwolves (cyber),191.5,194.76968850529005,10.005625287225712,14.0
+Golden State Warriors (cyber) - Phoenix Suns (cyber),205.92105263157896,204.94739899658418,10.60803163175873,38.0
+Golden State Warriors (cyber) - Sacramento Kings (cyber),209.11111111111111,208.58423188440747,7.87216231881728,45.0
+Los Angeles Clippers (cyber) - Denver Nuggets (cyber),207.29032258064515,206.90781322687346,8.698235722964045,31.0
+Los Angeles Clippers (cyber) - Golden State Warriors (cyber),200.32608695652175,202.0329347836501,9.976828922449998,46.0
+Los Angeles Clippers (cyber) - Los Angeles Lakers (cyber),201.06896551724137,204.01554378275276,8.246203242923288,29.0
+Los Angeles Clippers (cyber) - Memphis Grizzlies (cyber),190.16666666666666,198.25405511349933,11.166666666666666,6.0
+Los Angeles Clippers (cyber) - Minnesota Timberwolves (cyber),196.43333333333334,196.75288436621702,8.683525624414472,30.0
+Los Angeles Clippers (cyber) - Phoenix Suns (cyber),206.5625,205.0862214936433,8.8125,16.0
+Los Angeles Clippers (cyber) - Sacramento Kings (cyber),210.46153846153845,208.7696744319137,9.822382823404531,13.0
+Los Angeles Lakers (cyber) - Denver Nuggets (cyber),209.5909090909091,208.57179467247158,6.993473211593495,22.0
+Los Angeles Lakers (cyber) - Golden State Warriors (cyber),202.27272727272728,203.44168614858188,10.040153286234714,22.0
+Los Angeles Lakers (cyber) - Los Angeles Clippers (cyber),201.39285714285714,201.46539480545746,7.678571428571429,28.0
+Los Angeles Lakers (cyber) - Memphis Grizzlies (cyber),207.16666666666666,202.18239570226305,10.459467621719321,18.0
+Los Angeles Lakers (cyber) - Minnesota Timberwolves (cyber),198.12,198.2128318634046,9.168513274536183,25.0
+Los Angeles Lakers (cyber) - Phoenix Suns (cyber),208.22222222222223,206.3021241185902,14.633097320156644,9.0
+Los Angeles Lakers (cyber) - Sacramento Kings (cyber),205.64705882352942,209.21115337019972,10.684321182976422,17.0
+Memphis Grizzlies (cyber) - Boston Celtics (cyber),199.55172413793105,200.34547781119116,7.794359773571506,29.0
+Memphis Grizzlies (cyber) - Cleveland Cavaliers (cyber),199.81578947368422,200.83088239917856,8.43769351548686,38.0
+Memphis Grizzlies (cyber) - Denver Nuggets (cyber),204.11111111111111,204.8709695779587,8.014336713560144,9.0
+Memphis Grizzlies (cyber) - Golden State Warriors (cyber),197.3111111111111,200.29173074477956,9.884277770714126,45.0
+Memphis Grizzlies (cyber) - Los Angeles Clippers (cyber),195.85714285714286,197.74994442398832,8.007150796573097,35.0
+Memphis Grizzlies (cyber) - Los Angeles Lakers (cyber),203.94444444444446,202.07372255566463,8.765490685167016,36.0
+Memphis Grizzlies (cyber) - Milwaukee Bucks (cyber),208.42105263157896,210.6565546551256,8.031362241362064,19.0
+Memphis Grizzlies (cyber) - Minnesota Timberwolves (cyber),189.9047619047619,192.9992342471251,8.52362720169645,21.0
+Memphis Grizzlies (cyber) - Philadelphia 76ers (cyber),202.86666666666667,199.70911395616042,10.658177208767905,15.0
+Memphis Grizzlies (cyber) - Phoenix Suns (cyber),206.88235294117646,204.29093146696547,7.419247388182563,17.0
+Memphis Grizzlies (cyber) - Sacramento Kings (cyber),208.46341463414635,207.4002608374651,7.356027580192287,41.0
+Miami Heat (cyber) - Atlanta Hawks (cyber),205.53333333333333,204.75168054376883,10.049663891246245,30.0
+Miami Heat (cyber) - Boston Celtics (cyber),200.09375,201.53422035131655,9.977305087829137,32.0
+Miami Heat (cyber) - Brooklyn Nets (cyber),192.05714285714285,194.2678132632639,6.552544751894845,35.0
+Miami Heat (cyber) - Cleveland Cavaliers (cyber),202.7741935483871,201.8153700342952,6.311666764236902,31.0
+Miami Heat (cyber) - Milwaukee Bucks (cyber),213.65714285714284,213.94412138609033,10.680924690236315,35.0
+Miami Heat (cyber) - New York Knicks (cyber),204.42857142857142,203.40163541147822,10.016226403378884,49.0
+Miami Heat (cyber) - Philadelphia 76ers (cyber),199.9245283018868,200.9859969352026,9.980867866701939,53.0
+Milwaukee Bucks (cyber) - Atlanta Hawks (cyber),219.5,218.99325806791174,9.785714285714286,28.0
+Milwaukee Bucks (cyber) - Boston Celtics (cyber),215.17241379310346,214.57007818052736,7.6554983702175265,29.0
+Milwaukee Bucks (cyber) - Brooklyn Nets (cyber),212.94,210.50993091715566,9.579205526627547,50.0
+Milwaukee Bucks (cyber) - Cleveland Cavaliers (cyber),215.56521739130434,215.14540656525577,7.38498232324975,46.0
+Milwaukee Bucks (cyber) - Denver Nuggets (cyber),222.14285714285714,220.53462263343775,9.913733157098108,7.0
+Milwaukee Bucks (cyber) - Memphis Grizzlies (cyber),208.4,209.9881540846009,9.759526163384036,25.0
+Milwaukee Bucks (cyber) - Miami Heat (cyber),212.5142857142857,212.82490964975096,8.272150601449919,35.0
+Milwaukee Bucks (cyber) - New York Knicks (cyber),214.5,216.15134795166287,9.597788543257401,44.0
+Milwaukee Bucks (cyber) - Philadelphia 76ers (cyber),214.54545454545453,214.15796323613586,9.811001671084734,44.0
+Milwaukee Bucks (cyber) - Phoenix Suns (cyber),213.3,217.07295488452695,7.129181953810791,10.0
+Milwaukee Bucks (cyber) - Sacramento Kings (cyber),218.4090909090909,220.1052028555793,10.337309610105319,22.0
+Minnesota Timberwolves (cyber) - Denver Nuggets (cyber),197.64705882352942,199.76297636638995,7.694993048938221,17.0
+Minnesota Timberwolves (cyber) - Golden State Warriors (cyber),197.5,195.3436587362226,7.25,8.0
+Minnesota Timberwolves (cyber) - Los Angeles Clippers (cyber),193.0731707317073,193.76748758133223,8.932500302894335,41.0
+Minnesota Timberwolves (cyber) - Los Angeles Lakers (cyber),195.14583333333334,197.24680255246867,7.926683652391916,48.0
+Minnesota Timberwolves (cyber) - Memphis Grizzlies (cyber),188.60714285714286,191.1033815470743,8.48643890294448,28.0
+Minnesota Timberwolves (cyber) - Phoenix Suns (cyber),203.7826086956522,201.56151701485854,8.497325347180062,23.0
+Minnesota Timberwolves (cyber) - Sacramento Kings (cyber),209.1578947368421,205.60159679068104,8.694484717260888,19.0
+New York Knicks (cyber) - Atlanta Hawks (cyber),210.30612244897958,208.92488973704675,9.797451229856188,49.0
+New York Knicks (cyber) - Boston Celtics (cyber),203.02777777777777,204.49980904255574,9.47220100472841,36.0
+New York Knicks (cyber) - Brooklyn Nets (cyber),200.23076923076923,198.28874604314953,10.794327633280846,39.0
+New York Knicks (cyber) - Cleveland Cavaliers (cyber),203.56410256410257,204.8175911178569,7.748266894413926,39.0
+New York Knicks (cyber) - Miami Heat (cyber),203.6315789473684,202.9300293550542,8.796839015257454,38.0
+New York Knicks (cyber) - Milwaukee Bucks (cyber),216.125,217.24395513400754,8.537197756700376,40.0
+New York Knicks (cyber) - Philadelphia 76ers (cyber),204.23529411764707,203.96782036340193,9.762812962553054,34.0
+Philadelphia 76ers (cyber) - Atlanta Hawks (cyber),204.15384615384616,203.77988198289802,8.581520305061243,26.0
+Philadelphia 76ers (cyber) - Boston Celtics (cyber),202.74468085106383,200.99532435027098,8.766653820172415,47.0
+Philadelphia 76ers (cyber) - Brooklyn Nets (cyber),192.43243243243242,194.02541597795275,10.218276971185363,37.0
+Philadelphia 76ers (cyber) - Cleveland Cavaliers (cyber),199.16666666666666,201.3127261472001,9.197979485333361,36.0
+Philadelphia 76ers (cyber) - Denver Nuggets (cyber),204.46428571428572,205.4418495732286,7.495846398087754,28.0
+Philadelphia 76ers (cyber) - Memphis Grizzlies (cyber),195.0,196.98222524834324,8.872778156042905,32.0
+Philadelphia 76ers (cyber) - Miami Heat (cyber),200.30612244897958,199.2543454121187,8.392591097217222,49.0
+Philadelphia 76ers (cyber) - Milwaukee Bucks (cyber),213.62962962962962,213.5013886137934,7.796450586717789,27.0
+Philadelphia 76ers (cyber) - New York Knicks (cyber),202.1315789473684,202.41588536586445,9.574520282413918,38.0
+Philadelphia 76ers (cyber) - Phoenix Suns (cyber),207.625,204.3131768420694,12.125,8.0
+Philadelphia 76ers (cyber) - Sacramento Kings (cyber),206.33333333333334,207.38791554254604,6.820879504727338,18.0
+Phoenix Suns (cyber) - Boston Celtics (cyber),204.2,204.16781135330478,8.60372914118455,45.0
+Phoenix Suns (cyber) - Cleveland Cavaliers (cyber),208.13636363636363,204.33032266710217,11.590909090909092,22.0
+Phoenix Suns (cyber) - Denver Nuggets (cyber),211.7826086956522,209.7104531164502,9.06294497468474,23.0
+Phoenix Suns (cyber) - Golden State Warriors (cyber),202.5,203.9759568122727,7.994657069393933,36.0
+Phoenix Suns (cyber) - Los Angeles Clippers (cyber),207.36363636363637,203.79293688615115,6.511017212867875,11.0
+Phoenix Suns (cyber) - Los Angeles Lakers (cyber),209.3846153846154,206.11956891316694,8.684224152696528,39.0
+Phoenix Suns (cyber) - Memphis Grizzlies (cyber),196.2,200.75194706537047,10.950908630506195,15.0
+Phoenix Suns (cyber) - Milwaukee Bucks (cyber),214.28947368421052,216.81654025563958,9.81578947368421,38.0
+Phoenix Suns (cyber) - Minnesota Timberwolves (cyber),198.95454545454547,198.89285219135635,9.701299601571572,22.0
+Phoenix Suns (cyber) - Philadelphia 76ers (cyber),204.8,203.60412096787778,9.167505483854667,25.0
+Phoenix Suns (cyber) - Sacramento Kings (cyber),212.32258064516128,210.98198001635927,8.615809674780776,31.0
+Sacramento Kings (cyber) - Boston Celtics (cyber),203.9090909090909,207.18211603691591,9.47110145790145,11.0
+Sacramento Kings (cyber) - Cleveland Cavaliers (cyber),211.28571428571428,208.17141817686914,6.118368831875833,7.0
+Sacramento Kings (cyber) - Denver Nuggets (cyber),216.0909090909091,214.746960170893,7.545454545454546,22.0
+Sacramento Kings (cyber) - Golden State Warriors (cyber),213.0,209.81260987535634,9.395796708214553,18.0
+Sacramento Kings (cyber) - Los Angeles Clippers (cyber),204.96774193548387,206.02634745631138,10.38794669213907,31.0
+Sacramento Kings (cyber) - Los Angeles Lakers (cyber),208.5,209.8244080149699,9.304068002494986,12.0
+Sacramento Kings (cyber) - Memphis Grizzlies (cyber),208.30434782608697,205.88509099222293,9.11193674082111,23.0
+Sacramento Kings (cyber) - Milwaukee Bucks (cyber),216.71052631578948,219.85156936871556,9.6032097674215,38.0
+Sacramento Kings (cyber) - Minnesota Timberwolves (cyber),205.91666666666666,203.65039668327265,9.366534438909119,12.0
+Sacramento Kings (cyber) - Philadelphia 76ers (cyber),208.04347826086956,207.5561422579921,8.671472075739475,23.0
+Sacramento Kings (cyber) - Phoenix Suns (cyber),208.8181818181818,211.30650176777073,10.866591712623045,11.0
